@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Mail, Github, Linkedin, Copy, Check, Send } from "lucide-react"
+import { Mail, Github, Facebook, Copy, Check, Send } from "lucide-react"
 
 interface ContactLink {
   name: string
@@ -32,11 +32,11 @@ const contactLinks: ContactLink[] = [
     color: "#ffffff",
   },
   {
-    name: "LinkedIn",
-    icon: Linkedin,
-    href: "https://linkedin.com/in/yourusername",
-    value: "linkedin.com/in/yourusername",
-    color: "#0A66C2",
+    name: "Facebook",
+    icon: Facebook,
+    href: "https://facebook.com/yourusername",
+    value: "facebook.com/yourusername",
+    color: "#1877F2",
   },
 ]
 
