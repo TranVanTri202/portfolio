@@ -4,39 +4,24 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Zap, Server, Bot, Code2 } from "lucide-react"
+import { useLanguage } from "@/components/providers/language-provider"
 
-const highlights = [
-  { text: "backend architecture", color: "text-neon-cyan" },
-  { text: "performance optimization", color: "text-neon-purple" },
-  { text: "AI-powered solutions", color: "text-neon-pink" },
-]
-
-const specialties = [
-  {
-    icon: Server,
-    title: "Backend Architecture",
-    description: "Designing scalable, maintainable systems with clean code principles",
-  },
-  {
-    icon: Zap,
-    title: "API Design & Optimization",
-    description: "Building RESTful APIs with optimal performance and security",
-  },
-  {
-    icon: Code2,
-    title: "System Performance Tuning",
-    description: "Profiling and optimizing for maximum efficiency",
-  },
-  {
-    icon: Bot,
-    title: "AI Integration",
-    description: "Implementing chatbots, RAG systems, and intelligent automation",
-  },
-]
+const specialtyIcons = [Server, Zap, Code2, Bot]
 
 export function AboutSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t } = useLanguage()
+
+  const highlights = t.about.highlights.map((text, index) => ({
+    text,
+    color: index === 0 ? "text-neon-cyan" : index === 1 ? "text-neon-purple" : "text-neon-pink"
+  }))
+
+  const specialties = t.about.specialties.map((specialty, index) => ({
+    ...specialty,
+    icon: specialtyIcons[index]
+  }))
 
   return (
     <section id="about" className="py-24 lg:py-32 relative" ref={ref}>
@@ -51,12 +36,12 @@ export function AboutSection() {
           className="text-center mb-16"
         >
           <span className="text-neon-cyan font-mono text-sm tracking-wider">
-            {"// About Me"}
+            {t.about.label}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-2">
-            Who I{" "}
+            {t.about.title}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-purple">
-              Am
+              {t.about.titleHighlight}
             </span>
           </h2>
         </motion.div>
@@ -70,45 +55,15 @@ export function AboutSection() {
             className="space-y-6"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I&apos;m a{" "}
-              <span className="text-foreground font-semibold">logic-first developer</span>{" "}
-              with 2 years of experience crafting robust backend systems. My approach 
-              combines analytical thinking with creative problem-solving to build 
-              solutions that don&apos;t just work—they{" "}
-              <span className="text-neon-cyan">scale</span>.
+              {t.about.description1}
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              From architecting{" "}
-              <motion.span
-                className="text-neon-cyan font-semibold cursor-pointer"
-                whileHover={{ textShadow: "0 0 10px rgba(80, 200, 220, 0.8)" }}
-              >
-                CRM systems
-              </motion.span>{" "}
-              to building intelligent{" "}
-              <motion.span
-                className="text-neon-purple font-semibold cursor-pointer"
-                whileHover={{ textShadow: "0 0 10px rgba(168, 85, 247, 0.8)" }}
-              >
-                chatbot automation
-              </motion.span>{" "}
-              and implementing cutting-edge{" "}
-              <motion.span
-                className="text-neon-pink font-semibold cursor-pointer"
-                whileHover={{ textShadow: "0 0 10px rgba(236, 72, 153, 0.8)" }}
-              >
-                RAG AI systems
-              </motion.span>
-              , I thrive on complex challenges that push the boundaries of what&apos;s 
-              possible.
+              {t.about.description2}
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I&apos;m passionate about{" "}
-              <span className="text-foreground font-semibold">clean architecture</span>,{" "}
-              obsessed with <span className="text-foreground font-semibold">performance</span>,{" "}
-              and always exploring new ways to leverage AI to create smarter systems.
+              {t.about.description3}
             </p>
 
             {/* Animated highlights */}

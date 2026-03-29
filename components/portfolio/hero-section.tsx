@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
+import { useLanguage } from "@/components/providers/language-provider"
 
 // Tech icons with colors
 const techIcons = [
@@ -18,18 +19,14 @@ const techIcons = [
 // Replace this URL with your avatar
 const AVATAR_URL = "https://s240-ava-talk.zadn.vn/8/0/1/9/8/240/fe74feab54b0a516a0a6aaf1e7f38839.jpg"
 
-const taglines = [
-  "Logic-first developer building scalable systems & AI solutions",
-  "Crafting robust APIs and optimizing performance",
-  "Architecting backend systems that scale",
-]
-
 export function HeroSection() {
+  const { t } = useLanguage()
   const [currentTagline, setCurrentTagline] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
+    const taglines = t.hero.taglines
     const tagline = taglines[currentTagline]
     const typeSpeed = isDeleting ? 30 : 50
     const pauseTime = 2000
@@ -52,7 +49,14 @@ export function HeroSection() {
     }, typeSpeed)
 
     return () => clearTimeout(timeout)
-  }, [displayedText, isDeleting, currentTagline])
+  }, [displayedText, isDeleting, currentTagline, t.hero.taglines])
+
+  // Reset typing when language changes
+  useEffect(() => {
+    setDisplayedText("")
+    setCurrentTagline(0)
+    setIsDeleting(false)
+  }, [t])
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
@@ -107,7 +111,7 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <span className="text-neon-cyan font-mono text-sm md:text-base tracking-wider">
-                {"// Hello, I'm"}
+                {t.hero.greeting}
               </span>
             </motion.div>
 
@@ -117,10 +121,10 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold mt-2 mb-4"
             >
-              <span className="text-foreground">Backend</span>
+              <span className="text-foreground">{t.hero.title1}</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink">
-                Developer
+                {t.hero.title2}
               </span>
             </motion.h1>
 
@@ -183,11 +187,11 @@ export function HeroSection() {
             >
               <motion.a
                 href="#projects"
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-purple text-background font-semibold text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(80,200,220,0.5)]"
+                className="px-8 py-4 rounded-xl bg-gradient-to-r from-neon-cyan to-neon-purple text-primary-foreground font-semibold text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(80,200,220,0.5)]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                View My Work
+                {t.hero.viewWork}
               </motion.a>
               <motion.a
                 href="#contact"
@@ -195,7 +199,7 @@ export function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get In Touch
+                {t.hero.getInTouch}
               </motion.a>
             </motion.div>
           </div>

@@ -2,19 +2,23 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
-
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
-]
+import { Menu, X, Sun, Moon, Globe } from "lucide-react"
+import { useTheme } from "@/components/providers/theme-provider"
+import { useLanguage } from "@/components/providers/language-provider"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
+  const { language, toggleLanguage, t } = useLanguage()
+
+  const navItems = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.experience, href: "#experience" },
+    { label: t.nav.contact, href: "#contact" },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,14 +66,71 @@ export function Navigation() {
             ))}
           </div>
 
+          {/* Theme & Language Toggle */}
+          <div className="hidden md:flex items-center gap-2">
+            {/* Language Toggle */}
+            <motion.button
+              onClick={toggleLanguage}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg glass hover:border-neon-cyan/50 transition-all flex items-center gap-1.5"
+              aria-label="Toggle language"
+            >
+              <Globe size={18} className="text-muted-foreground" />
+              <span className="text-xs font-mono text-neon-cyan uppercase">{language}</span>
+            </motion.button>
+
+            {/* Theme Toggle */}
+            <motion.button
+              onClick={toggleTheme}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg glass hover:border-neon-cyan/50 transition-all"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun size={18} className="text-neon-cyan" />
+              ) : (
+                <Moon size={18} className="text-neon-purple" />
+              )}
+            </motion.button>
+          </div>
+
           {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden text-foreground p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            whileTap={{ scale: 0.9 }}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          <div className="md:hidden flex items-center gap-2">
+            {/* Mobile Language Toggle */}
+            <motion.button
+              onClick={toggleLanguage}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg glass flex items-center gap-1"
+              aria-label="Toggle language"
+            >
+              <Globe size={16} className="text-muted-foreground" />
+              <span className="text-xs font-mono text-neon-cyan uppercase">{language}</span>
+            </motion.button>
+
+            {/* Mobile Theme Toggle */}
+            <motion.button
+              onClick={toggleTheme}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg glass"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun size={16} className="text-neon-cyan" />
+              ) : (
+                <Moon size={16} className="text-neon-purple" />
+              )}
+            </motion.button>
+
+            <motion.button
+              className="text-foreground p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              whileTap={{ scale: 0.9 }}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
+          </div>
         </div>
       </motion.nav>
 
