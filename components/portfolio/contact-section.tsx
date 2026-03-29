@@ -19,16 +19,16 @@ const contactLinks: ContactLink[] = [
   {
     name: "Email",
     icon: Mail,
-    href: "mailto:your.email@example.com",
-    value: "your.email@example.com",
+    href: "mailto:tranvantri270802@gmail.com",
+    value: "tranvantri270802@gmail.com",
     color: "#EA4335",
     copyable: true,
   },
   {
     name: "GitHub",
     icon: Github,
-    href: "https://github.com/yourusername",
-    value: "github.com/yourusername",
+    href: "https://github.com/TranVanTri202",
+    value: "github.com/TranVanTri202",
     color: "#ffffff",
   },
   {
