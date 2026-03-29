@@ -16,7 +16,7 @@ const techIcons = [
 ]
 
 // Replace this URL with your avatar
-const AVATAR_URL = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+const AVATAR_URL = "https://s240-ava-talk.zadn.vn/8/0/1/9/8/240/fe74feab54b0a516a0a6aaf1e7f38839.jpg"
 
 const taglines = [
   "Logic-first developer building scalable systems & AI solutions",
@@ -78,7 +78,7 @@ export function HeroSection() {
               >
                 <div className="absolute inset-1 rounded-full bg-background" />
               </motion.div>
-              
+
               {/* Floating animation */}
               <motion.div
                 className="absolute inset-2 rounded-full overflow-hidden"
@@ -160,7 +160,7 @@ export function HeroSection() {
                 >
                   <div
                     className="w-12 h-12 rounded-xl glass flex items-center justify-center font-mono text-sm font-bold cursor-pointer transition-all duration-300 group-hover:shadow-lg"
-                    style={{ 
+                    style={{
                       color: tech.color,
                       boxShadow: `0 0 0 rgba(${tech.color}, 0)`,
                     }}
