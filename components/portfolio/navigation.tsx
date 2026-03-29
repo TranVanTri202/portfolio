@@ -54,7 +54,14 @@ export function Navigation() {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="text-muted-foreground hover:text-neon-cyan transition-colors relative group"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const target = document.querySelector(item.href)
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                }}
+                className="text-muted-foreground hover:text-neon-cyan transition-colors relative group cursor-pointer"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -148,11 +155,20 @@ export function Navigation() {
                 <motion.a
                   key={item.href}
                   href={item.href}
-                  className="text-2xl text-muted-foreground hover:text-neon-cyan transition-colors"
+                  className="text-2xl text-muted-foreground hover:text-neon-cyan transition-colors cursor-pointer"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setIsMobileMenuOpen(false)
+                    setTimeout(() => {
+                      const target = document.querySelector(item.href)
+                      if (target) {
+                        target.scrollIntoView({ behavior: "smooth", block: "start" })
+                      }
+                    }, 300)
+                  }}
                 >
                   {item.label}
                 </motion.a>
