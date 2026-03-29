@@ -34,8 +34,8 @@ const contactLinks: ContactLink[] = [
   {
     name: "Facebook",
     icon: Facebook,
-    href: "https://facebook.com/yourusername",
-    value: "facebook.com/yourusername",
+    href: "https://www.facebook.com/trivan2002",
+    value: "facebook.com/trivan2002",
     color: "#1877F2",
   },
 ]
@@ -46,7 +46,7 @@ function ContactCard({ link, index }: { link: ContactLink; index: number }) {
   const handleCopy = async (e: React.MouseEvent) => {
     if (!link.copyable) return
     e.preventDefault()
-    
+
     try {
       await navigator.clipboard.writeText(link.value)
       setCopied(true)
@@ -73,18 +73,18 @@ function ContactCard({ link, index }: { link: ContactLink; index: number }) {
       onClick={link.copyable ? handleCopy : undefined}
     >
       {/* Background glow */}
-      <div 
+      <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl"
         style={{ backgroundColor: link.color }}
       />
 
       <div className="relative flex items-center gap-4">
         {/* Icon */}
-        <div 
+        <div
           className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
           style={{ backgroundColor: `${link.color}20` }}
         >
-          <Icon 
+          <Icon
             className="w-7 h-7 transition-colors duration-300"
             style={{ color: link.color }}
           />
@@ -163,7 +163,7 @@ export function ContactSection() {
             </span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities? 
+            Have a project in mind or want to discuss opportunities?
             I&apos;d love to hear from you!
           </p>
         </motion.div>
