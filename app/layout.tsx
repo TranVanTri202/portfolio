@@ -37,6 +37,10 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+import { ThemeTransition } from '@/components/portfolio/theme-transition'
+
+import { MouseFollower } from '@/components/portfolio/mouse-follower'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,6 +51,8 @@ export default function RootLayout({
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider>
           <LanguageProvider>
+            <ThemeTransition />
+            <MouseFollower />
             {children}
           </LanguageProvider>
         </ThemeProvider>

@@ -80,7 +80,7 @@ export function Navigation() {
               onClick={toggleLanguage}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-lg glass hover:border-neon-cyan/50 transition-all flex items-center gap-1.5"
+              className="p-2 rounded-lg glass hover:border-neon-cyan/50 transition-all flex items-center gap-1.5 cursor-pointer"
               aria-label="Toggle language"
             >
               <Globe size={18} className="text-muted-foreground" />
@@ -92,7 +92,7 @@ export function Navigation() {
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-lg glass hover:border-neon-cyan/50 transition-all"
+              className="p-2 rounded-lg glass hover:border-neon-cyan/50 transition-all cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -109,7 +109,7 @@ export function Navigation() {
             <motion.button
               onClick={toggleLanguage}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-lg glass flex items-center gap-1"
+              className="p-2 rounded-lg glass flex items-center gap-1 cursor-pointer"
               aria-label="Toggle language"
             >
               <Globe size={16} className="text-muted-foreground" />
@@ -120,7 +120,7 @@ export function Navigation() {
             <motion.button
               onClick={toggleTheme}
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-lg glass"
+              className="p-2 rounded-lg glass cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -131,7 +131,7 @@ export function Navigation() {
             </motion.button>
 
             <motion.button
-              className="text-foreground p-2"
+              className="text-foreground p-2 cursor-pointer"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.9 }}
             >
