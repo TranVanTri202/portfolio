@@ -1,35 +1,47 @@
-# portfolio
+# 👋 Hi, I'm Trần Văn Trí
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+### **FullStack Developer | Logic-First Architect | AI Enthusiast**
 
-## Built with v0
+I am a passionate developer with a deep focus on building scalable systems and intelligent AI solutions. My approach to software development is **logic-first**, ensuring that every line of code serves a purpose and every architecture is designed to scale.
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+---
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_1XTGAYoe4c98r4r56rDMRdmNPoWf)
+## 🚀 About Me
 
-## Getting Started
+With 2 years of experience in the tech industry, I've transitioned from crafting responsive frontends to architecting complex backend systems. I thrive on solving difficult problems—whether it's optimizing database performance, designing robust APIs, or integrating cutting-edge AI like RAG (Retrieval-Augmented Generation) into real-world applications.
 
-First, run the development server:
+- **Current focus**: Backend Architecture, AI Integration, and System Performance.
+- **Philosophy**: Clean code is not just a standard; it's a necessity for scalability.
+- **Goal**: To build technology that makes a meaningful impact through smart automation and efficient design.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## 🛠 My Toolkit
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Backend**: Node.js, NestJS, PHP (Building the backbone of reliable applications).
+- **AI/ML**: RAG Systems, Chatbot Automation (Making systems smarter).
+- **Database**: PostgreSQL, MySQL, Redis, MongoDB (Managing data for performance).
+- **Core Stack**: Next.js, TypeScript, Prisma, Supabase, Firebase, Google Cloud.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌟 Key Specialties
 
-## Learn More
+- **Backend Architecture**: Designing scalable, maintainable systems with clean code principles.
+- **API Design & Optimization**: Building high-performance RESTful & Real-time APIs.
+- **AI Integration**: Implementing intelligent chatbots and contextual document Q&A systems.
+- **Cloud Infrastructure**: Leveraging modern cloud providers for seamless deployment and storage.
 
-To learn more, take a look at the following resources:
+## 📈 Work Experience
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+- **Innocom**: Backend Developer (Present) - Leading backend development for enterprise CRM and AI features.
+- **Alta Software**: Frontend Intern (2022 - 2023) - Laying the foundation with modern UI/UX practices.
 
-<a href="https://v0.app/chat/api/kiro/clone/TranVanTri202/portfolio" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+---
+
+## 📫 Let's Connect!
+
+I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+
+- **GitHub**: [@TranVanTri202](https://github.com/TranVanTri202)
+- **Specialties**: Backend System Design, AI Solutions, Enterprise CRM.
+
+> *"Coding is not just about writing syntax; it's about solving problems elegantly."*
+
+---
