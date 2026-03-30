@@ -57,7 +57,7 @@ export function LoadingScreen() {
               transition={{ delay: 0.5, duration: 1 }}
               className="mt-4 text-xs font-mono text-muted-foreground tracking-[0.2em] uppercase"
             >
-              FullStack Developer
+              Backend Developer
             </motion.p>
 
             {/* Background Glow */}
