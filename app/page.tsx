@@ -10,9 +10,14 @@ import { ExperienceSection } from "@/components/portfolio/experience-section"
 import { ContactSection } from "@/components/portfolio/contact-section"
 import { Footer } from "@/components/portfolio/footer"
 
+import { LoadingScreen } from "@/components/portfolio/loading-screen"
+
 export default function Portfolio() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
+      {/* Intro Loading Screen */}
+      <LoadingScreen />
+
       {/* Animated particle background */}
       <ParticleBackground />
       
@@ -27,7 +32,7 @@ export default function Portfolio() {
         <ProjectsSection />
         <ExperienceSection />
         <ContactSection />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </main>
   )

@@ -92,7 +92,7 @@ const translations: Record<Language, Translations> = {
       contact: "Contact",
     },
     hero: {
-      greeting: "// Hello, I'm",
+      greeting: "// Hello, I'm Trần Văn Trí",
       title1: "Backend",
       title2: "Developer",
       viewWork: "View My Work",

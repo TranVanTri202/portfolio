@@ -16,26 +16,18 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Backend Developer | Portfolio',
+  title: 'Văn Trí | Portfolio',
   description: 'Logic-first developer building scalable systems & AI solutions. Specializing in backend architecture, API design, and AI integration.',
   keywords: ['Backend Developer', 'Node.js', 'NestJS', 'PostgreSQL', 'Redis', 'AI', 'RAG', 'Chatbot'],
   authors: [{ name: 'Backend Developer' }],
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
+        url: '/person.svg',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/person.svg',
   },
 }
 

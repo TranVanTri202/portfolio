@@ -25,8 +25,8 @@ const projects: Project[] = [
     icon: Server,
     gradient: "from-blue-500/20 to-cyan-500/20",
     links: {
-      details: "#",
-      github: "#",
+      // details: "#",
+      // github: "#",
     },
   },
   {
@@ -36,8 +36,8 @@ const projects: Project[] = [
     icon: MessageSquare,
     gradient: "from-purple-500/20 to-pink-500/20",
     links: {
-      details: "#",
-      github: "#",
+      // details: "#",
+      // github: "#",
     },
   },
   {
@@ -47,8 +47,8 @@ const projects: Project[] = [
     icon: Bot,
     gradient: "from-green-500/20 to-emerald-500/20",
     links: {
-      details: "#",
-      github: "#",
+      // details: "#",
+      // github: "#",
     },
   },
   {
@@ -58,8 +58,8 @@ const projects: Project[] = [
     icon: FileText,
     gradient: "from-orange-500/20 to-amber-500/20",
     links: {
-      details: "#",
-      github: "#",
+      // details: "#",
+      github: "https://github.com/TranVanTri202/fintrace-ai",
     },
   },
 ]

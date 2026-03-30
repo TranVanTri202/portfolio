@@ -18,9 +18,9 @@ const experiences: Experience[] = [
   {
     company: "Innocom",
     role: "Backend Developer",
-    period: "2023 - Present",
+    period: "06/2024 - Present",
     description: "Leading backend development for enterprise applications, designing scalable architectures, implementing AI-powered features, and optimizing system performance. Working with cross-functional teams to deliver high-quality solutions.",
-    technologies: ["Node.js", "NestJS", "PostgreSQL", "Redis", "AI/ML"],
+    technologies: ["Node.js", "NestJS", "PostgreSQL", "Redis", "Jquery", "MySQL", "PHP","AI/ML", "Google Cloud Storage"],
     type: "full-time",
   },
   {
@@ -28,7 +28,7 @@ const experiences: Experience[] = [
     role: "Frontend Intern",
     period: "2022 - 2023",
     description: "Contributed to frontend development projects, learned modern web development practices, and collaborated with senior developers to build responsive user interfaces.",
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    technologies: ["React", "TypeScript", "Antd Design", "Firebase"],
     type: "internship",
   },
 ]
