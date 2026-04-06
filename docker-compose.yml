@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Môi trường phát triển (Development)
+  portfolio-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: portfolio-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true # Giúp hot-reload hoạt động tốt hơn trên Docker
+    env_file:
+      - .env.local
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+  # Môi trường sản xuất (Production)
+  portfolio-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-prod
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.production
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+networks:
+  portfolio-network:
+    driver: bridge

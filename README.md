@@ -43,5 +43,5 @@ I'm always open to discussing new projects, creative ideas, or opportunities to 
 - **Specialties**: Backend System Design, AI Solutions, Enterprise CRM.
 
 > *"Coding is not just about writing syntax; it's about solving problems elegantly."*
-
+tesst 
 ---
