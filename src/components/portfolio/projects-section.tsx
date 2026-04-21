@@ -199,32 +199,6 @@ export function ProjectsSection() {
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
-
-        {/* Floating decorations */}
-        <div className="hidden lg:block absolute top-1/2 -right-10 opacity-10 pointer-events-none">
-          <motion.div
-            animate={{
-              y: [0, 30, 0],
-              rotate: [0, -15, 0]
-            }}
-            transition={{ duration: 7, repeat: Infinity }}
-            className="text-8xl text-neon-purple font-mono"
-          >
-            {"[ ]"}
-          </motion.div>
-        </div>
-        <div className="hidden lg:block absolute bottom-10 left-0 opacity-10 pointer-events-none">
-          <motion.div
-            animate={{
-              y: [0, -40, 0],
-              rotate: [0, 20, 0]
-            }}
-            transition={{ duration: 8, repeat: Infinity }}
-            className="text-7xl text-neon-cyan font-mono"
-          >
-            {"&&"}
-          </motion.div>
-        </div>
       </div>
     </section>
   )

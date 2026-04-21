@@ -22,18 +22,18 @@ export function FloatingElements() {
   const [elements, setElements] = useState<Element[]>([])
 
   useEffect(() => {
-    // Tăng số lượng phần tử lên 30 để phong phú hơn
-    const newElements = Array.from({ length: 30 }).map((_, i) => ({
+    // Giảm số lượng để tránh rối mắt
+    const newElements = Array.from({ length: 15 }).map((_, i) => ({
       id: i,
       char: symbols[Math.floor(Math.random() * symbols.length)],
       x: `${Math.random() * 100}%`,
       y: `${Math.random() * 100}%`,
-      duration: 20 + Math.random() * 30, // Chuyển động chậm và mượt hơn
+      duration: 25 + Math.random() * 25,
       delay: Math.random() * -30,
-      scale: 0.5 + Math.random() * 1.5,
+      scale: 0.6 + Math.random() * 0.8,
       rotate: Math.random() * 360,
-      moveX: (Math.random() - 0.5) * 200, // Di chuyển ngang ngẫu nhiên
-      moveY: (Math.random() - 0.5) * 200, // Di chuyển dọc ngẫu nhiên
+      moveX: (Math.random() - 0.5) * 150,
+      moveY: (Math.random() - 0.5) * 150,
     }))
     setElements(newElements)
   }, [])
@@ -43,8 +43,8 @@ export function FloatingElements() {
       {elements.map((el) => (
         <motion.div
           key={el.id}
-          // Tăng độ đậm nhạt (opacity) để dễ nhìn thấy hơn
-          className="absolute font-mono text-neon-cyan/20 dark:text-neon-cyan/15 select-none"
+          // Giảm độ đậm nhạt để tinh tế hơn
+          className="absolute font-mono text-neon-cyan/10 dark:text-neon-cyan/5 select-none"
           initial={{ 
             left: el.x, 
             top: el.y, 
@@ -65,7 +65,7 @@ export function FloatingElements() {
             ease: "linear",
           }}
           style={{
-            fontSize: `${16 + Math.random() * 30}px`,
+            fontSize: `${14 + Math.random() * 20}px`,
             filter: "blur(0.5px)",
           }}
         >

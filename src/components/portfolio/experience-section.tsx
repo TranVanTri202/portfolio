@@ -176,32 +176,6 @@ export function ExperienceSection() {
             />
           ))}
         </div>
-
-        {/* Floating decorations */}
-        <div className="hidden lg:block absolute top-10 left-10 opacity-10 pointer-events-none">
-          <motion.div
-            animate={{
-              y: [0, 25, 0],
-              rotate: [0, 15, 0]
-            }}
-            transition={{ duration: 6, repeat: Infinity }}
-            className="text-7xl text-neon-cyan font-mono"
-          >
-            {";"}
-          </motion.div>
-        </div>
-        <div className="hidden lg:block absolute bottom-1/2 right-0 opacity-10 pointer-events-none">
-          <motion.div
-            animate={{
-              y: [0, -30, 0],
-              rotate: [0, -10, 0]
-            }}
-            transition={{ duration: 9, repeat: Infinity }}
-            className="text-6xl text-neon-purple font-mono"
-          >
-            {"=>"}
-          </motion.div>
-        </div>
       </div>
     </section>
   )
