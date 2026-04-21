@@ -48,6 +48,9 @@ export function ParticleBackground() {
 
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+      const isDark = document.documentElement.classList.contains("dark")
+      const baseColor = isDark ? "80, 200, 220" : "60, 160, 180"
 
       particles.forEach((particle, i) => {
         particle.x += particle.vx
@@ -59,7 +62,7 @@ export function ParticleBackground() {
         // Draw particle
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(80, 200, 220, ${particle.opacity})`
+        ctx.fillStyle = `rgba(${baseColor}, ${particle.opacity})`
         ctx.fill()
 
         // Connect nearby particles
@@ -72,7 +75,7 @@ export function ParticleBackground() {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = `rgba(80, 200, 220, ${0.1 * (1 - distance / 100)})`
+            ctx.strokeStyle = `rgba(${baseColor}, ${0.1 * (1 - distance / 100)})`
             ctx.stroke()
           }
         })

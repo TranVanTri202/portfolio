@@ -3,37 +3,24 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { Briefcase, Calendar } from "lucide-react"
+import { Briefcase, Calendar, CheckCircle2 } from "lucide-react"
+import { useLanguage } from "@/components/providers/language-provider"
 
-interface Experience {
-  company: string
-  role: string
+interface ExperienceRole {
+  title: string
   period: string
-  description: string
+  points: string[]
   technologies: string[]
-  type: "full-time" | "internship"
 }
 
-const experiences: Experience[] = [
-  {
-    company: "Innocom",
-    role: "Backend Developer",
-    period: "06/2024 - Present",
-    description: "Leading backend development for enterprise applications, designing scalable architectures, implementing AI-powered features, and optimizing system performance. Working with cross-functional teams to deliver high-quality solutions.",
-    technologies: ["Node.js", "NestJS", "PostgreSQL", "Redis", "Jquery", "MySQL", "PHP","AI/ML", "Google Cloud Storage"],
-    type: "full-time",
-  },
-  {
-    company: "Alta Software",
-    role: "Frontend Intern",
-    period: "2022 - 2023",
-    description: "Contributed to frontend development projects, learned modern web development practices, and collaborated with senior developers to build responsive user interfaces.",
-    technologies: ["React", "TypeScript", "Antd Design", "Firebase"],
-    type: "internship",
-  },
-]
+interface ExperienceItem {
+  company: string
+  overallPeriod: string
+  type: "full-time" | "internship"
+  roles: ExperienceRole[]
+}
 
-function TimelineItem({ experience, index, isLast }: { experience: Experience; index: number; isLast: boolean }) {
+function TimelineItem({ experience, index, isLast }: { experience: ExperienceItem; index: number; isLast: boolean }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
@@ -67,52 +54,75 @@ function TimelineItem({ experience, index, isLast }: { experience: Experience; i
         <div className="absolute inset-0 rounded-full bg-neon-cyan/50 animate-ping" />
       </motion.div>
 
-      {/* Content - alternating sides on desktop */}
-      <div className={`${index % 2 === 0 ? "md:text-right md:pr-12" : "md:col-start-2 md:pl-12"}`}>
+      {/* Content - alternating sides on desktop, but internal text is ALWAYS left-aligned */}
+      <div className={`${index % 2 === 0 ? "md:pr-12" : "md:col-start-2 md:pl-12"}`}>
         <motion.div
           whileHover={{ y: -5 }}
           className="p-6 rounded-2xl glass transition-all duration-300 hover:border-neon-cyan/50"
         >
-          {/* Header */}
-          <div className={`flex items-start gap-4 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
+          {/* Company Header */}
+          <div className="flex items-start gap-4 mb-6">
             <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 flex items-center justify-center">
               <Briefcase className="w-6 h-6 text-neon-cyan" />
             </div>
-            <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-              <h3 className="text-xl font-bold text-foreground group-hover:text-neon-cyan transition-colors">
-                {experience.role}
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-purple inline-block">
+                {experience.company}
               </h3>
-              <p className="text-neon-purple font-semibold">{experience.company}</p>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                <Calendar size={14} />
+                <span>{experience.overallPeriod}</span>
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                  experience.type === "full-time" 
+                    ? "bg-neon-cyan/20 text-neon-cyan" 
+                    : "bg-neon-purple/20 text-neon-purple"
+                }`}>
+                  {experience.type}
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Period */}
-          <div className={`flex items-center gap-2 text-sm text-muted-foreground mt-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-            <Calendar size={14} />
-            <span>{experience.period}</span>
-            <span className={`px-2 py-0.5 rounded-full text-xs ${
-              experience.type === "full-time" 
-                ? "bg-neon-cyan/20 text-neon-cyan" 
-                : "bg-neon-purple/20 text-neon-purple"
-            }`}>
-              {experience.type === "full-time" ? "Full-time" : "Internship"}
-            </span>
-          </div>
+          {/* Roles Container */}
+          <div className="space-y-8">
+            {experience.roles.map((role, roleIndex) => (
+              <div key={role.period} className="relative">
+                {/* Visual separator for multiple roles */}
+                {roleIndex > 0 && (
+                  <div className="absolute -top-4 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+                )}
+                
+                <div className="pt-2">
+                  <h4 className="text-lg font-bold text-foreground mb-1 group-hover:text-neon-cyan transition-colors">
+                    {role.title}
+                  </h4>
+                  <p className="text-xs font-mono text-neon-purple mb-3">
+                    {role.period}
+                  </p>
+                  
+                  {/* Bullet Points - ALWAYS left aligned */}
+                  <ul className="space-y-2 mb-4">
+                    {role.points.map((point, pIndex) => (
+                      <li key={pIndex} className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed">
+                        <CheckCircle2 size={14} className="mt-1 flex-shrink-0 text-neon-cyan" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-          {/* Description */}
-          <p className={`text-muted-foreground text-sm leading-relaxed mt-4 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-            {experience.description}
-          </p>
-
-          {/* Technologies */}
-          <div className={`flex flex-wrap gap-2 mt-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-            {experience.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1 rounded-full text-xs font-mono bg-secondary text-secondary-foreground"
-              >
-                {tech}
-              </span>
+                  {/* Technologies for this role - ALWAYS left aligned */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {role.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded-md text-[10px] font-mono bg-secondary/50 text-secondary-foreground border border-border/50 group-hover:border-neon-cyan/20 transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </motion.div>
@@ -127,12 +137,13 @@ function TimelineItem({ experience, index, isLast }: { experience: Experience; i
 export function ExperienceSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t } = useLanguage()
 
   return (
     <section id="experience" className="py-24 lg:py-32 relative" ref={ref}>
       {/* Background */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-0 w-1/2 h-96 bg-neon-purple/5 rounded-full blur-[128px]" />
-      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-1/2 h-96 bg-neon-cyan/5 rounded-full blur-[128px]" />
+      <div className="absolute top-1/2 -translate-y-1/2 left-0 w-1/2 h-96 bg-neon-purple/5 rounded-full blur-[128px] hidden dark:block" />
+      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-1/2 h-96 bg-neon-cyan/5 rounded-full blur-[128px] hidden dark:block" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -142,30 +153,57 @@ export function ExperienceSection() {
           className="text-center mb-16"
         >
           <span className="text-neon-cyan font-mono text-sm tracking-wider">
-            {"// Career Journey"}
+            {t.experience.label}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-2">
-            Work{" "}
+            {t.experience.title1}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-purple">
-              Experience
+              {t.experience.title2}
             </span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            My professional journey in software development
+            {t.experience.subtitle}
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-12">
-          {experiences.map((experience, index) => (
+        <div className="max-w-5xl mx-auto space-y-12">
+          {t.experience.items.map((experience, index) => (
             <TimelineItem
               key={experience.company}
-              experience={experience}
+              experience={experience as any} // Casting for simplicity with the updated Translations interface
               index={index}
-              isLast={index === experiences.length - 1}
+              isLast={index === t.experience.items.length - 1}
             />
           ))}
+        </div>
+
+        {/* Floating decorations */}
+        <div className="hidden lg:block absolute top-10 left-10 opacity-10 pointer-events-none">
+          <motion.div
+            animate={{
+              y: [0, 25, 0],
+              rotate: [0, 15, 0]
+            }}
+            transition={{ duration: 6, repeat: Infinity }}
+            className="text-7xl text-neon-cyan font-mono"
+          >
+            {";"}
+          </motion.div>
+        </div>
+        <div className="hidden lg:block absolute bottom-1/2 right-0 opacity-10 pointer-events-none">
+          <motion.div
+            animate={{
+              y: [0, -30, 0],
+              rotate: [0, -10, 0]
+            }}
+            transition={{ duration: 9, repeat: Infinity }}
+            className="text-6xl text-neon-purple font-mono"
+          >
+            {"=>"}
+          </motion.div>
         </div>
       </div>
     </section>
   )
 }
+

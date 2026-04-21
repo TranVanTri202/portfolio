@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
-import { ExternalLink, Github, Server, Bot, FileText, MessageSquare } from "lucide-react"
+import { ExternalLink, Github, Server, Bot, FileText, MessageSquare, Lock, Globe as GlobeIcon } from "lucide-react"
 
 interface Project {
   title: string
@@ -11,6 +11,7 @@ interface Project {
   techStack: string[]
   icon: React.ElementType
   gradient: string
+  status: "private" | "public"
   links: {
     details?: string
     github?: string
@@ -19,22 +20,12 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "CRM System",
-    description: "Enterprise-grade customer relationship management system with advanced analytics, automated workflows, and multi-tenant architecture.",
-    techStack: ["PHP", "MySQL", "Redis", "REST API"],
-    icon: Server,
-    gradient: "from-blue-500/20 to-cyan-500/20",
-    links: {
-      // details: "#",
-      // github: "#",
-    },
-  },
-  {
     title: "Multi-platform Chatbot",
     description: "Intelligent chatbot system supporting multiple platforms with natural language processing, context awareness, and seamless integration.",
     techStack: ["Node.js", "PostgreSQL", "Redis", "WebSocket"],
     icon: MessageSquare,
     gradient: "from-purple-500/20 to-pink-500/20",
+    status: "private",
     links: {
       // details: "#",
       // github: "#",
@@ -46,6 +37,7 @@ const projects: Project[] = [
     techStack: ["NestJS", "Prisma", "Vector DB", "OpenAI"],
     icon: Bot,
     gradient: "from-green-500/20 to-emerald-500/20",
+    status: "private",
     links: {
       // details: "#",
       // github: "#",
@@ -57,6 +49,7 @@ const projects: Project[] = [
     techStack: ["NestJS", "Supabase", "OCR", "TypeScript"],
     icon: FileText,
     gradient: "from-orange-500/20 to-amber-500/20",
+    status: "public",
     links: {
       // details: "#",
       github: "https://github.com/TranVanTri202/fintrace-ai",
@@ -83,13 +76,25 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         
         {/* Content */}
         <div className="relative z-10">
-          {/* Icon */}
-          <motion.div
-            whileHover={{ rotate: 10, scale: 1.1 }}
-            className="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 flex items-center justify-center mb-6"
-          >
-            <Icon className="w-7 h-7 text-neon-cyan" />
-          </motion.div>
+          <div className="flex justify-between items-start mb-6">
+            {/* Icon */}
+            <motion.div
+              whileHover={{ rotate: 10, scale: 1.1 }}
+              className="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 flex items-center justify-center"
+            >
+              <Icon className="w-7 h-7 text-neon-cyan" />
+            </motion.div>
+
+            {/* Status Tag */}
+            <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 ${
+              project.status === "public" 
+                ? "bg-green-500/20 text-green-400 border border-green-500/30" 
+                : "bg-orange-500/20 text-orange-400 border border-orange-500/30"
+            }`}>
+              {project.status === "public" ? <GlobeIcon size={12} /> : <Lock size={12} />}
+              {project.status}
+            </div>
+          </div>
 
           {/* Title */}
           <h3 className="text-xl font-bold mb-3 group-hover:text-neon-cyan transition-colors">
@@ -129,9 +134,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.links.github && (
               <motion.a
                 href={project.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition-all duration-300 ${
+                  project.status === "public"
+                    ? "bg-neon-cyan text-background font-bold shadow-[0_0_15px_rgba(80,200,220,0.4)] hover:shadow-[0_0_25px_rgba(80,200,220,0.6)]"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 <Github size={16} />
                 GitHub
@@ -187,6 +198,32 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
+        </div>
+
+        {/* Floating decorations */}
+        <div className="hidden lg:block absolute top-1/2 -right-10 opacity-10 pointer-events-none">
+          <motion.div
+            animate={{
+              y: [0, 30, 0],
+              rotate: [0, -15, 0]
+            }}
+            transition={{ duration: 7, repeat: Infinity }}
+            className="text-8xl text-neon-purple font-mono"
+          >
+            {"[ ]"}
+          </motion.div>
+        </div>
+        <div className="hidden lg:block absolute bottom-10 left-0 opacity-10 pointer-events-none">
+          <motion.div
+            animate={{
+              y: [0, -40, 0],
+              rotate: [0, 20, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="text-7xl text-neon-cyan font-mono"
+          >
+            {"&&"}
+          </motion.div>
         </div>
       </div>
     </section>

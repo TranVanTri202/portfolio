@@ -39,7 +39,7 @@ export const viewport: Viewport = {
 
 import { ThemeTransition } from '@/components/portfolio/theme-transition'
 
-import { MouseFollower } from '@/components/portfolio/mouse-follower'
+
 
 export default function RootLayout({
   children,
@@ -48,11 +48,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <ThemeProvider>
           <LanguageProvider>
             <ThemeTransition />
-            <MouseFollower />
+
             {children}
           </LanguageProvider>
         </ThemeProvider>

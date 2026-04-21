@@ -37,12 +37,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Total duration is 1000ms, let's switch at 500ms
     setTimeout(() => {
       setTheme((prev) => (prev === "dark" ? "light" : "dark"))
-    }, 450)
+    }, 250)
 
     // Complete the transition
     setTimeout(() => {
       setIsTransitioning(false)
-    }, 1000)
+    }, 700)
   }
 
   return (

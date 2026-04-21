@@ -1,6 +1,7 @@
 "use client"
 
 import { ParticleBackground } from "@/components/portfolio/particle-background"
+import { FloatingElements } from "@/components/portfolio/floating-elements"
 import { Navigation } from "@/components/portfolio/navigation"
 import { HeroSection } from "@/components/portfolio/hero-section"
 import { AboutSection } from "@/components/portfolio/about-section"
@@ -20,6 +21,7 @@ export default function Portfolio() {
 
       {/* Animated particle background */}
       <ParticleBackground />
+      <FloatingElements />
       
       {/* Navigation */}
       <Navigation />
@@ -28,9 +30,9 @@ export default function Portfolio() {
       <div className="relative z-10">
         <HeroSection />
         <AboutSection />
+        <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
-        <ExperienceSection />
         <ContactSection />
         {/* <Footer /> */}
       </div>

@@ -20,7 +20,7 @@ export function ThemeTransition() {
             initial={{ clipPath: "inset(0 100% 0 0)" }}
             animate={{ clipPath: "inset(0 0% 0 0)" }}
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
-            transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+            transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
             style={{ backgroundColor: overlayBg }}
             className="absolute inset-0"
           >
@@ -28,7 +28,7 @@ export function ThemeTransition() {
             <motion.div
               initial={{ left: "-100%" }}
               animate={{ left: "100%" }}
-              transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+              transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
               className="absolute top-0 bottom-0 w-[2px] flex items-center justify-center translate-x-[-100%]"
             >
               <div className="h-full w-full bg-neon-cyan shadow-[0_0_40px_rgba(0,216,255,1)]" />

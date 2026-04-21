@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 import { useLanguage } from "@/components/providers/language-provider"
@@ -21,48 +21,12 @@ const AVATAR_URL = "https://s240-ava-talk.zadn.vn/8/0/1/9/8/240/fe74feab54b0a516
 
 export function HeroSection() {
   const { t } = useLanguage()
-  const [currentTagline, setCurrentTagline] = useState(0)
-  const [displayedText, setDisplayedText] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
-
-  useEffect(() => {
-    const taglines = t.hero.taglines
-    const tagline = taglines[currentTagline]
-    const typeSpeed = isDeleting ? 30 : 50
-    const pauseTime = 2000
-
-    if (!isDeleting && displayedText === tagline) {
-      const timeout = setTimeout(() => setIsDeleting(true), pauseTime)
-      return () => clearTimeout(timeout)
-    }
-
-    if (isDeleting && displayedText === "") {
-      setIsDeleting(false)
-      setCurrentTagline((prev) => (prev + 1) % taglines.length)
-      return
-    }
-
-    const timeout = setTimeout(() => {
-      setDisplayedText((prev) =>
-        isDeleting ? prev.slice(0, -1) : tagline.slice(0, prev.length + 1)
-      )
-    }, typeSpeed)
-
-    return () => clearTimeout(timeout)
-  }, [displayedText, isDeleting, currentTagline, t.hero.taglines])
-
-  // Reset typing when language changes
-  useEffect(() => {
-    setDisplayedText("")
-    setCurrentTagline(0)
-    setIsDeleting(false)
-  }, [t])
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       {/* Gradient orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[128px] animate-pulse" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-neon-purple/20 rounded-full blur-[128px] animate-pulse" />
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[128px] animate-pulse hidden dark:block" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-neon-purple/20 rounded-full blur-[128px] animate-pulse hidden dark:block" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -128,23 +92,13 @@ export function HeroSection() {
               </span>
             </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="h-8 md:h-10 mb-8"
+            <div
+              className="mb-8"
             >
-              <p className="text-lg md:text-xl text-muted-foreground font-mono">
-                {displayedText}
-                <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.5, repeat: Infinity }}
-                  className="text-neon-cyan"
-                >
-                  |
-                </motion.span>
+              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-mono">
+                {t.hero.taglines[0]}
               </p>
-            </motion.div>
+            </div>
 
             {/* Tech icons */}
             <motion.div
@@ -166,7 +120,6 @@ export function HeroSection() {
                     className="w-12 h-12 rounded-xl glass flex items-center justify-center font-mono text-sm font-bold cursor-pointer transition-all duration-300 group-hover:shadow-lg"
                     style={{
                       color: tech.color,
-                      boxShadow: `0 0 0 rgba(${tech.color}, 0)`,
                     }}
                   >
                     {tech.icon}
